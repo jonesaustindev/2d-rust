@@ -1,0 +1,31 @@
+[package]
+name = "2d-rust"
+version = "0.1.0"
+edition = "202h1"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[workspace]
+resolver = "2" # Important! wgpu/Bevy needs this!
+
+# Enable a small amount of optimization in debug mode
+[profile.dev]
+opt-level = 1
+
+# Enable high optimizations for dependencies (incl. Bevy), but not for our code:
+[profile.dev.package."*"]
+opt-level = 3
+
+[dependencies]
+bevy = { version = "0.10.0", features = ["dynamic_linking"] }
+bevy_asset_loader = { version = "0.15.0", features = ["2d"] }
+bevy_prototype_lyon = "0.8.0"
+rand = "0.8.5"
+bevy_rapier2d = "0.21.0"
+leafwing-input-manager = "0.9.1"
+
+[dependencies.bevy_hanabi]
+version = "0.6.1"
+# git = "https://github.com/djeedai/bevy_hanabi"
+# rev = "84a6d4fad47bacea229c955d34d192faa2650fdf"
+default-features = false
+features = ["2d"]
